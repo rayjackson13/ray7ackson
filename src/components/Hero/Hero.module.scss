@@ -1,3 +1,5 @@
+@import "../../styles/functions";
+
 $header-height: 96px;
 
 .root {
@@ -21,9 +23,14 @@ $header-height: 96px;
 
 .navbar {
   height: $header-height;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 40px;
+
+  @include screen(md) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 }
 
 .container {
@@ -31,8 +38,14 @@ $header-height: 96px;
   padding-right: 1rem;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+
+  @include screen(md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .brand {
@@ -43,6 +56,11 @@ $header-height: 96px;
   text-decoration: none;
   padding-top: 5px;
   padding-bottom: 5px;
+  margin-bottom: 40px;
+
+  @include screen(md) {
+    margin-bottom: 0;
+  }
 }
 
 .accent {
@@ -70,6 +88,6 @@ $header-height: 96px;
     color: #a2a2a2;
     text-decoration: underline;
     text-underline-offset: 2px;
-    margin: 0 .2rem;
+    margin: 0 0.2rem;
   }
 }
