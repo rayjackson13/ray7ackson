@@ -1,0 +1,139 @@
+$screen-xxs: 'screen and (max-width: 575px)';
+$screen-xs: 'screen and (max-width: 767px)';
+$screen-sm: 'screen and (max-width: 991px)';
+
+@font-face {
+    font-family: 'acme';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Acme Regular'), url('../assets/fonts/Acme-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'gilroy';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Gilroy ExtraBold'), url('../assets/fonts/gilroy.otf') format('opentype');
+}
+@font-face {
+    font-family: 'gilroy';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Gilroy Light'), url('../assets/fonts/Gilroy-Light.otf') format('opentype');
+}
+
+body{
+	margin: 0;
+	padding: 0;
+    min-height: 320px;
+}
+
+button{
+	cursor: pointer;
+
+}
+
+.accent{
+    color: #B00000;
+}
+
+.height {
+    &-full {
+        height: 100%;
+    }
+}
+
+.media-button{
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-family: acme;
+    font-size: 13px;
+    color: #fff;
+    background-color: transparent;
+    transition: background-color .25s, box-shadow .25s;
+    position: relative;
+    z-index: 110;
+    overflow: hidden;
+    box-shadow:  0px 3px 5px transparent;
+    &::after{
+        position: absolute;
+        content: '';
+        transform: scaleX(.01) translateX(50%) translateY(100%);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,.3);
+        z-index: -2;
+        transition: transform .25s, border-radius .25s;
+        border-radius: 50%;
+    }
+    &::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #B00000;
+        z-index: -2;
+    }
+    &:hover{
+        text-decoration: none;
+        color: #fff;
+        box-shadow:  0px 3px 5px rgba(0,0,0,0.39);
+        &::after{
+            transform: scaleX(1) translateY(0);
+            border-radius: 0;
+        }
+    }
+    &:active{
+        &::after{
+            background-color: rgba(83,83,83,.3);
+        }
+    }
+    >.fa{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+.tal{
+    text-align: left !important;
+}
+
+.tac{
+    text-align: center !important;
+}
+
+.button-sc{
+    &::before{
+        background-color: #f30;
+    }
+}
+.button-bc{
+    &::before{
+        background-color: #629AA9;
+    }
+}
+
+.mobile-block{
+    display: none;
+}
+
+.no_padding-xs{
+    @media #{$screen-xxs} {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+@import "sections/topper";
+@import "sections/follow";
+@import "sections/about";
+@import "sections/music";
+@import "sections/footer";
+@import "mobile/_large.scss";
+@import "mobile/_medium.scss";
+@import "mobile/_small.scss";
