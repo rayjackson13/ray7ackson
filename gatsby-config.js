@@ -10,6 +10,7 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-tsconfig-paths',
     'gatsby-plugin-root-import',
+    'gatsby-plugin-scss-typescript',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

@@ -1,0 +1,31 @@
+{
+  "streamingPlatforms": [
+    {
+      "name": "Apple Music",
+      "url": "https://music.apple.com/cz/artist/ray-7ackson/1487964868",
+      "icon": "apple"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/artist/7rVhEJQCPnrhgXUFsctd20",
+      "icon": "spotify"
+    },
+    {
+      "name": "SoundCloud",
+      "url": "https://soundcloud.com/ray7ackson",
+      "icon": "soundcloud"
+    }
+  ],
+  "socialMedia": [
+    {
+      "name": "VK",
+      "url": "https://vk.com/ray7ackson",
+      "icon": "vk"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/ray7ackson",
+      "icon": "instagram"
+    }
+  ]
+}

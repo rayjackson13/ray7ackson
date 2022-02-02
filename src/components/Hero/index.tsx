@@ -1,88 +1,38 @@
-import React from 'react';
+import React, { useRef } from 'react';
+
+import * as styles from './Hero.module.scss';
 
 import BackgroundImage from 'assets/img/bg-new.jpeg';
-import './styles.scss';
+import { Snow } from 'components/Snow';
+import { Socials } from 'components/Socials';
 
 export const Hero = (): JSX.Element => {
-  const gradient = 'linear-gradient(90deg, rgba(55,55,55,.25) 0%, rgba(55,55,55,0) 100%)';
+  const ref = useRef<HTMLElement>(null);
+  const gradient =
+    'linear-gradient(90deg, rgba(55,55,55,.25) 0%, rgba(55,55,55,0) 100%)';
   const backgroundImage = `${gradient}, url(${BackgroundImage})`;
   return (
-    <header className="topper">
-      <div className="landscape" style={{ backgroundImage }}>
-        <canvas id="snow"></canvas>
+    <header className={styles.root} ref={ref}>
+      <div className={styles.bg} style={{ backgroundImage }}>
+        <Snow parentRef={ref} />
       </div>
-      <nav className="header navbar">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <span className="accent">Ray</span> 7ackson
+      <nav className={styles.navbar}>
+        <div className={styles.container}>
+          <a className={styles.brand} href="#">
+            <span className={styles.accent}>Ray</span> 7ackson
           </a>
 
-          <div>
-            <ul className="social ml-auto">
-              <li className="social-link">
-                <a
-                  className="social-link_item"
-                  data-link="soundcloud"
-                  href="https://music.apple.com/cz/artist/ray-7ackson/1487964868"
-                  rel="nofollow noreferrer"
-                  target="_blank"
-                >
-                  <i className="fab fa-apple"></i>
-                </a>
-              </li>
-              <li className="social-link">
-                <a
-                  className="social-link_item"
-                  data-link="spotify"
-                  href="https://open.spotify.com/artist/7rVhEJQCPnrhgXUFsctd20"
-                  rel="nofollow noreferrer"
-                  target="_blank"
-                >
-                  <i className="fab fa-spotify"></i>
-                </a>
-              </li>
-              <li className="social-link">
-                <a
-                  className="social-link_item"
-                  data-link="soundcloud"
-                  href="https://soundcloud.com/ray7ackson"
-                  rel="nofollow noreferrer"
-                  target="_blank"
-                >
-                  <i className="fab fa-soundcloud"></i>
-                </a>
-              </li>
-              <li className="social-divider"></li>
-              <li className="social-link">
-                <a
-                  className="social-link_item"
-                  data-link="vk"
-                  href="https://vk.com/jakeminor"
-                  rel="nofollow noreferrer"
-                  target="_blank"
-                >
-                  <i className="fab fa-vk"></i>
-                </a>
-              </li>
-              <li className="social-link">
-                <a
-                  className="social-link_item"
-                  data-link="instagram"
-                  href="https://www.instagram.com/ray7ackson"
-                  rel="nofollow noreferrer"
-                  target="_blank"
-                >
-                  <i className="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <Socials />
         </div>
       </nav>
-      <div className="topper-content">
-        <span className="attribution">
+      <div className={styles.content}>
+        <span className={styles.attribution}>
           Photo by
-          <a href="https://unsplash.com/photos/_TuI8tZHlk4" rel="noreferrer" target="_blank">
+          <a
+            href="https://unsplash.com/photos/_TuI8tZHlk4"
+            rel="noreferrer"
+            target="_blank"
+          >
             Josh Hild
           </a>
           on

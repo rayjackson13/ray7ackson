@@ -1,0 +1,33 @@
+.social {
+  margin-left: auto;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding: 10px 10px;
+  border-radius: 8px;
+  list-style: none;
+  display: flex;
+}
+
+.link {
+  padding: 0px 10px;
+  color: #000;
+  opacity: 0.4;
+  font-size: 26px;
+  transition: opacity 0.125s, background-color 0.125s;
+  &:hover {
+    opacity: 1;
+  }
+  & > i {
+    height: auto;
+  }
+}
+
+.divider {
+  width: 2px;
+  background-color: #000;
+  margin-left: 10px;
+  margin-right: 10px;
+  opacity: 0.4;
+}
