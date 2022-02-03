@@ -14,23 +14,25 @@ export const TrackView = (props: Props): JSX.Element => {
   const { trackList, selected, onPlay } = props;
   return (
     <div className={styles.wrap}>
-      {trackList.map((track, idx) => (
-        <span
-          className={styles.item}
-          data-index={track.id}
-          data-selected={selected === track.id}
-          key={track.id}
-        >
-          <button
-            className={styles.playButton}
-            onClick={(): void => onPlay(track.id)}
-            type="button"
+      <div className={styles.scroll}>
+        {trackList.map((track, idx) => (
+          <span
+            className={styles.item}
+            data-index={track.id}
+            data-selected={selected === track.id}
+            key={track.id}
           >
-            <i className="fa fa-play" />
-          </button>
-          <span className={styles.name}>{`${idx + 1}. ${track.title}`}</span>
-        </span>
-      ))}
+            <button
+              className={styles.playButton}
+              onClick={(): void => onPlay(track.id)}
+              type="button"
+            >
+              <i className="fa fa-play" />
+            </button>
+            <span className={styles.name}>{`${idx + 1}. ${track.title}`}</span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

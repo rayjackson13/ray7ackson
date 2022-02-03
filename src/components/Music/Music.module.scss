@@ -23,6 +23,7 @@ $gray: rgba(105, 105, 105, 0.3);
 }
 
 .title {
+  margin-top: 0;
   text-align: center;
   color: #fff;
   font-size: 24px;
@@ -38,6 +39,26 @@ $gray: rgba(105, 105, 105, 0.3);
     font-size: 36px;
     line-height: 48px;
     margin-bottom: 60px;
+  }
+
+  svg {
+    font-family: 'gilroy', sans-serif;
+    font-size: 36px;
+    width: 300px;
+    height: 44px;
+
+    @include screen(md) {
+      font-size: 48px;
+      width: 400px;
+      height: 60px;
+    }
+
+    text {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2px;
+      stroke-linejoin: round;
+    }
   }
 }
 
