@@ -21,19 +21,31 @@ export type Album = {
 };
 
 export const Player = (): JSX.Element => {
-  const [selectedAlbum, setSelectedAlbum] = useState(0);
+  const [albumIndex, setAlbumIndex] = useState(0);
+  const [trackIndex, setTrackIndex] = useState(0);
+  const selectedAlbum: Song[] =
+    trackList.find((album) => album.id === albumIndex)?.songs || [];
+
+  const changeAlbum = (index: number): void => {
+    setAlbumIndex(index);
+    setTrackIndex(0);
+  };
 
   return (
     <div className={styles.player}>
       <div className={styles.grid}>
         <AlbumView
           albumList={trackList}
-          selected={selectedAlbum}
-          setSelected={setSelectedAlbum}
+          selected={albumIndex}
+          setSelected={changeAlbum}
         />
         <div className={styles.rewind}>
           <Controls />
-          <TrackView />
+          <TrackView
+            onPlay={setTrackIndex}
+            selected={trackIndex}
+            trackList={selectedAlbum}
+          />
         </div>
       </div>
     </div>

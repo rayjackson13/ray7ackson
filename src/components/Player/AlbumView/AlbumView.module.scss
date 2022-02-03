@@ -1,16 +1,13 @@
-@import '../../../styles/functions';
+@import "../../../styles/functions";
 
 $gray: rgba(0, 0, 30, 0.15);
 
 .albumWrap {
   width: 100%;
   height: 100%;
-  padding-bottom: 15px;
-
-  @include screen(md) {
-    padding-left: 15px;
-    padding-bottom: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .albumTitle {
@@ -22,9 +19,10 @@ $gray: rgba(0, 0, 30, 0.15);
   margin-bottom: 0;
   padding-top: 15px;
   padding-bottom: 10px;
+  color: #1a1a1a;
 
   @include screen(md) {
-    padding: 25px 30px;
+    padding: 20px;
   }
 }
 
@@ -32,26 +30,28 @@ $gray: rgba(0, 0, 30, 0.15);
   background-color: $gray;
   padding-top: 15px;
   padding-bottom: 15px;
+  flex: 1;
 }
 
 .album {
   font-family: "Acme";
   font-size: 18px;
   display: block;
-  padding: 4px 30px;
+  padding: 10px 30px;
   cursor: pointer;
   transition: background-color 0.125s, color 0.125s;
   position: relative;
   z-index: 0;
-  color: #1a1a1a;
-  transition: background-color 0.125s;
+  color: #4c4c4c;
+  transition: all 0.125s;
 
   &:hover {
-    background-color: #d64545;
-    color: #ffffff;
+    color: #1a1a1a;
+    padding-left: 40px;
   }
   &[data-selected="true"] {
-    background-color: #b00000;
+    background-color: #1a1a1a;
     color: #ffffff;
+    padding-left: 30px;
   }
 }
