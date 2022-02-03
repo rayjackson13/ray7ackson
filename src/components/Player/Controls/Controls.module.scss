@@ -1,4 +1,4 @@
-$gray: rgba(105, 105, 105, 0.3);
+$gray: #a2a2a2;
 
 .controls {
   padding: 15px 0;
@@ -114,4 +114,20 @@ $gray: rgba(105, 105, 105, 0.3);
     font-size: 18px;
     margin-right: 0.3rem;
   }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }

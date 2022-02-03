@@ -15,6 +15,11 @@ $gray: rgba(105, 105, 105, 0.3);
     max-width: 800px;
     border-radius: 24px;
   }
+
+  @include screen(xl) {
+    height: 460px;
+    max-width: 1000px;
+  }
 }
 
 .grid {
