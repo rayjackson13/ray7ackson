@@ -1,0 +1,172 @@
+@import "../../styles/functions";
+
+$gray: rgba(105, 105, 105, 0.3);
+
+.music {
+  padding: 50px 0;
+  background-image: linear-gradient(to bottom, rgba(32, 32, 32, 0.15) 0%, rgba(0, 0, 0, 0.85) 100%),
+    url(../../assets/img/player.jpg);
+  background-size: cover;
+  background-position: 0 75%;
+
+  @include screen(md) {
+    padding: 100px 0;
+  }
+}
+
+.title {
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 40px;
+  font-family: "gilroy", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+
+  @include screen(md) {
+    font-size: 36px;
+    line-height: 48px;
+    margin-bottom: 60px;
+  }
+}
+
+.player {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  @include screen(md) {
+    height: 330px;
+    border-radius: 10px;
+  }
+}
+
+.albumWrap {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  padding-left: 15px;
+  padding-bottom: 15px;
+
+  @include screen(md) {
+    padding-bottom: 0;
+  }
+}
+
+.albumTitle {
+  font-family: "gilroy";
+  font-weight: bold;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 10px;
+
+  @include screen(md) {
+    padding: 25px 30px;
+  }
+}
+
+.album {
+  font-family: "Acme";
+  font-size: 18px;
+  display: block;
+  padding: 2px 30px;
+  cursor: pointer;
+  transition: background-color 0.125s, color 0.125s;
+  position: relative;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: -1px;
+    background-color: transparent;
+    transition: background-color 0.125s;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: #ffffff;
+
+    &::after {
+      background-color: #d64545;
+    }
+  }
+  &.active {
+    color: #ffffff;
+
+    &::after {
+      background-color: #b00000;
+    }
+  }
+}
+
+.rewind {
+  border-left: 1px solid $gray;
+}
+
+.controls {
+  padding: 15px 0;
+  margin-left: 30px;
+  margin-right: 45px;
+  border-bottom: 1px solid $gray;
+  display: flex;
+}
+
+.controlsWrap {
+  display: block;
+  font-size: 0;
+}
+
+.controlsButton {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  outline: 0;
+  background: 0;
+  padding: 0;
+  margin-right: 10px;
+
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    :global(.svg-inline--fa path) {
+      fill: #b00000;
+    }
+  }
+
+  :global(.svg-inline--fa) {
+    width: 100%;
+    height: 100%;
+    path {
+      transition: fill 0.25s;
+    }
+  }
+}
+
+.buy {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  :global(.svg-inline--fa) {
+    margin-right: 0.1em;
+    vertical-align: -0.3em;
+  }
+}
+
+.small {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}

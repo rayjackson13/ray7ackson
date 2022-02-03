@@ -1,58 +1,63 @@
+import clsx from 'clsx';
 import React from 'react';
 
+import * as styles from './Music.module.scss';
+
 export const Music = (): JSX.Element => (
-  <section className="music">
+  <section className={styles.music}>
     <div className="container">
-      <h1 className="music-title">Play my music</h1>
+      <h1 className={styles.title}>Play my music</h1>
       <div className="row">
         <div className="offset-0 offset-lg-2 col-12 col-lg-8 no_padding-xs">
-          <div className="music-player">
+          <div className={styles.player}>
             <audio id="audioPlayer" />
             <div className="row height-full">
               <div className="col-12 col-sm-4 px-0">
-                <div className="music-player-albums">
-                  <h5 className="music-player-albums--title">Albums</h5>
-                  <span className="music-player-albums--item" data-album="0">
+                <div className={styles.albumWrap}>
+                  <h5 className={styles.albumTitle}>Albums</h5>
+                  <span className={styles.album} data-album="0">
                     Something Special
                   </span>
-                  <span className="music-player-albums--item" data-album="1">
+                  <span className={styles.album} data-album="1">
                     Home - Single
                   </span>
                 </div>
               </div>
-              <div className="col-12 col-sm-8 px-0 music-player-rewind">
-                <div className="music-player-controls">
-                  <span className="music-player-controls-wrap">
-                    <button className="music-player-controls--button" id="audioPlay" type="button">
+              {/* col-12 col-sm-8 px-0 music-player-rewind */}
+              <div className={styles.rewind}>
+                <div className={styles.controls}>
+                  <span className={styles.controlsWrap}>
+                    <button
+                      className={styles.controlsButton}
+                      id="audioPlay"
+                      type="button"
+                    >
                       <i className="fas fa-play-circle" />
                     </button>
                     <button
-                      className="music-player-controls--button small"
+                      className={clsx(styles.controlsButton, styles.small)}
                       id="audioPrev"
                       type="button"
                     >
                       <i className="fas fa-step-backward" />
                     </button>
                     <button
-                      className="music-player-controls--button small mr-0"
+                      className={clsx(styles.controlsButton, styles.small)}
                       id="audioNext"
                       type="button"
                     >
                       <i className="fas fa-step-forward" />
                     </button>
                   </span>
-                  <span className="music-player-controls-buy">
-                    <span className="music-player-controls-buy--price" id="audioPrice">
-                      7$
-                    </span>
+                  <span className={styles.buy}>
                     <a
-                      className="music-player-controls-buy--link media-button"
+                      className={styles.buyLink}
                       href="temp"
                       id="audioBuy"
                       target="_blank"
                     >
                       <i className="fas fa-shopping-cart" />
-                      <span className="music-player-controls-buy--text">Buy</span>
+                      <span>Buy</span>
                     </a>
                   </span>
                 </div>
