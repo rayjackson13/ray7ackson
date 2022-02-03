@@ -18,7 +18,7 @@ export const Snow = (props: Props): JSX.Element => {
   const {
     count = 500,
     parentRef,
-    refreshRate = 50,
+    refreshRate = 60,
     size = 2,
     speed = 10,
   } = props;

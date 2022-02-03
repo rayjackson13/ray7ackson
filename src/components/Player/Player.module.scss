@@ -1,0 +1,25 @@
+@import "../../styles/functions";
+
+$gray: rgba(105, 105, 105, 0.3);
+
+.player {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border-radius: 16px;
+
+  @include screen(md) {
+    height: 330px;
+    border-radius: 10px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, auto);
+}
+
+.rewind {
+  border-left: 1px solid $gray;
+}
