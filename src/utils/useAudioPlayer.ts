@@ -36,6 +36,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setPlaying] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
 
   const getSelectedAlbum = (index?: number): Song[] => {
     const albumId = index !== undefined ? index : albumIndex;
@@ -45,6 +46,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   const changeAlbum = (index: number): void => {
     setAlbumIndex(index);
     if (!isPlaying) setTrackIndex(0);
+    setLoaded(false);
   };
 
   const load = async (track?: Song): Promise<boolean> => {
@@ -53,10 +55,12 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     const link = await getFileLink(track.link);
     if (!link) {
       setLoading(false);
+      setLoaded(false);
       return false;
     }
 
     audioElement.src = link;
+    setLoaded(true);
     return true;
   };
 
@@ -73,7 +77,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     }
 
     pause();
-    if (selectedIndex !== trackIndex) {
+    if (selectedIndex !== trackIndex || !isLoaded) {
       setTrackIndex(selectedIndex);
       const album = getSelectedAlbum(albumId);
       const track = album.find((song) => song.id === selectedIndex);

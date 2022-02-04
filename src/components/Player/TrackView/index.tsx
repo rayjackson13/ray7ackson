@@ -17,7 +17,7 @@ export const TrackView = (props: Props): JSX.Element => {
   const { trackList, selected, play, isPlaying, isLoading } = props;
   return (
     <div className={styles.wrap}>
-      <div className={styles.scroll}>
+      <div>
         {trackList.map((track, idx) => {
           const icon = isPlaying && selected === track.id ? 'pause' : 'play';
           return (
