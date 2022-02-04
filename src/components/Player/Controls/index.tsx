@@ -4,14 +4,18 @@ import React from 'react';
 
 import * as styles from './Controls.module.scss';
 
+import { AudioPlayer } from 'utils/useAudioPlayer';
+
 type Props = {
   isLoading: boolean;
   isPlaying: boolean;
-  play: (index?: number) => void;
+  next: AudioPlayer['next'];
+  play: AudioPlayer['play'];
+  prev: AudioPlayer['prev'];
 };
 
 export const Controls = (props: Props): JSX.Element => {
-  const { isLoading, isPlaying, play } = props;
+  const { isLoading, isPlaying, next, play, prev } = props;
   const icon = isPlaying ? 'pause' : 'play';
 
   return (
@@ -19,14 +23,14 @@ export const Controls = (props: Props): JSX.Element => {
       <span className={styles.controlsWrap}>
         <button
           className={clsx(styles.controlsButton, styles.small)}
-          id="audioPrev"
+          onClick={(): void => prev()}
           type="button"
         >
           <i className="fas fa-step-backward" />
         </button>
         <button
           className={styles.controlsButton}
-          onClick={(): void => play()}
+          onClick={(): Promise<void> => play()}
           type="button"
         >
           {isLoading ? (
@@ -40,7 +44,7 @@ export const Controls = (props: Props): JSX.Element => {
         </button>
         <button
           className={clsx(styles.controlsButton, styles.small)}
-          id="audioNext"
+          onClick={(): void => next()}
           type="button"
         >
           <i className="fas fa-step-forward" />

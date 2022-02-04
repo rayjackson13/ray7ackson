@@ -10,7 +10,7 @@ import { useAudioPlayer } from 'utils/useAudioPlayer';
 
 export const Player = (): JSX.Element => {
   const audioElement = useRef(new Audio());
-  const player = useAudioPlayer(audioElement);
+  const player = useAudioPlayer(audioElement.current);
 
   return (
     <div className={styles.player}>
@@ -24,7 +24,9 @@ export const Player = (): JSX.Element => {
           <Controls
             isLoading={player.isLoading}
             isPlaying={player.isPlaying}
+            next={player.next}
             play={player.play}
+            prev={player.prev}
           />
           <TrackView
             isLoading={player.isLoading}

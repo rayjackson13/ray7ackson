@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MutableRefObject, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import trackList from 'assets/music/trackList.json';
 import { getFileLink } from 'utils/firebase';
@@ -23,15 +23,15 @@ export type AudioPlayer = {
   changeAlbum: (index: number) => void;
   isLoading: boolean;
   isPlaying: boolean;
+  next: () => void;
   play: (index?: number | undefined) => Promise<void>;
+  prev: () => void;
   selectedAlbum: Song[];
   trackIndex: number;
   trackList: Album[];
 };
 
-export const useAudioPlayer = (
-  audioElement: MutableRefObject<HTMLAudioElement>
-): AudioPlayer => {
+export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   const [albumIndex, setAlbumIndex] = useState(0);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setPlaying] = useState(false);
@@ -53,12 +53,12 @@ export const useAudioPlayer = (
       return false;
     }
 
-    audioElement.current.src = link;
+    audioElement.src = link;
     return true;
   };
 
   const pause = (): void => {
-    audioElement.current.pause();
+    audioElement.pause();
     setPlaying(false);
   };
 
@@ -84,12 +84,28 @@ export const useAudioPlayer = (
     }
 
     try {
-      await audioElement.current.play();
+      await audioElement.play();
       setPlaying(true);
       setLoading(false);
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const next = (): void => {
+    pause();
+    const nextTrack = selectedAlbum.find((val) => val.id === trackIndex + 1);
+    if (!nextTrack) return;
+
+    play(nextTrack.id);
+  };
+
+  const prev = (): void => {
+    pause();
+    const prevTrack = selectedAlbum.find((val) => val.id === trackIndex - 1);
+    if (!prevTrack) return;
+
+    play(prevTrack.id);
   };
 
   useEffect(() => {
@@ -102,7 +118,9 @@ export const useAudioPlayer = (
     changeAlbum,
     isLoading,
     isPlaying,
+    next,
     play,
+    prev,
     selectedAlbum,
     trackIndex,
     trackList,
