@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import { Song } from '../index';
-
 import * as styles from './TrackView.module.scss';
+
+import type { Song } from 'utils/useAudioPlayer';
 
 type Props = {
   isLoading: boolean;

@@ -1,8 +1,8 @@
 import React, { MouseEventHandler } from 'react';
 
-import { Album } from '../index';
-
 import * as styles from './AlbumView.module.scss';
+
+import type { Album } from 'utils/useAudioPlayer';
 
 type Props = {
   albumList: Album[];
