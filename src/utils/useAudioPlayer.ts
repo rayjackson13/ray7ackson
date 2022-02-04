@@ -21,12 +21,12 @@ export type Album = {
 export type AudioPlayer = {
   albumIndex: number;
   changeAlbum: (index: number) => void;
+  getSelectedAlbum: () => Song[];
   isLoading: boolean;
   isPlaying: boolean;
   next: () => void;
   play: (index?: number | undefined) => Promise<void>;
   prev: () => void;
-  selectedAlbum: Song[];
   trackIndex: number;
   trackList: Album[];
 };
@@ -36,8 +36,11 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setPlaying] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const selectedAlbum: Song[] =
-    trackList.find((album) => album.id === albumIndex)?.songs || [];
+
+  const getSelectedAlbum = (index?: number): Song[] => {
+    const albumId = index !== undefined ? index : albumIndex;
+    return trackList.find((album) => album.id === albumId)?.songs || [];
+  };
 
   const changeAlbum = (index: number): void => {
     setAlbumIndex(index);
@@ -62,7 +65,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     setPlaying(false);
   };
 
-  const play = async (index?: number): Promise<void> => {
+  const play = async (index?: number, albumId?: number): Promise<void> => {
     const selectedIndex = index === undefined ? trackIndex : index;
     if (isPlaying && selectedIndex === trackIndex) {
       pause();
@@ -72,7 +75,8 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     pause();
     if (selectedIndex !== trackIndex) {
       setTrackIndex(selectedIndex);
-      const track = selectedAlbum.find((song) => song.id === selectedIndex);
+      const album = getSelectedAlbum(albumId);
+      const track = album.find((song) => song.id === selectedIndex);
       setLoading(true);
       const loaded = await load(track);
       if (!loaded) {
@@ -93,35 +97,57 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   };
 
   const next = (): void => {
-    pause();
-    const nextTrack = selectedAlbum.find((val) => val.id === trackIndex + 1);
-    if (!nextTrack) return;
+    const nextTrack = getSelectedAlbum().find(
+      (val) => val.id === trackIndex + 1
+    );
+    if (nextTrack) {
+      play(nextTrack.id);
+      return;
+    }
 
-    play(nextTrack.id);
+    const nextAlbum = trackList.find((val) => val.id === albumIndex + 1);
+    if (nextAlbum) {
+      setAlbumIndex(nextAlbum.id);
+      const track = nextAlbum.songs[0];
+      setTrackIndex(track.id);
+      play(track.id, nextAlbum.id);
+    }
   };
 
   const prev = (): void => {
-    pause();
-    const prevTrack = selectedAlbum.find((val) => val.id === trackIndex - 1);
-    if (!prevTrack) return;
+    const prevTrack = getSelectedAlbum().find(
+      (val) => val.id === trackIndex - 1
+    );
+    if (prevTrack) {
+      play(prevTrack.id);
+      return;
+    }
 
-    play(prevTrack.id);
+    const prevAlbum = trackList.find((val) => val.id === albumIndex - 1);
+    if (prevAlbum) {
+      setAlbumIndex(prevAlbum.id);
+      const songs = prevAlbum.songs;
+      const track = songs[songs.length - 1];
+      setTrackIndex(track.id);
+      play(track.id, prevAlbum.id);
+    }
   };
 
   useEffect(() => {
-    const track = selectedAlbum.find((song) => song.id === trackIndex);
+    audioElement.preload = 'none';
+    const track = getSelectedAlbum().find((song) => song.id === trackIndex);
     load(track);
   }, []);
 
   return {
     albumIndex,
     changeAlbum,
+    getSelectedAlbum,
     isLoading,
     isPlaying,
     next,
     play,
     prev,
-    selectedAlbum,
     trackIndex,
     trackList,
   };

@@ -33,7 +33,7 @@ export const Player = (): JSX.Element => {
             isPlaying={player.isPlaying}
             play={player.play}
             selected={player.trackIndex}
-            trackList={player.selectedAlbum}
+            trackList={player.getSelectedAlbum()}
           />
         </div>
       </div>
