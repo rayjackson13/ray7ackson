@@ -49,8 +49,8 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
 
   const getSelectedTrack = (): Song | undefined => {
     const album = getSelectedAlbum();
-    return album.find(track => track.id === trackIndex);
-  }
+    return album.find((track) => track.id === trackIndex);
+  };
 
   const changeAlbum = (index: number): void => {
     setAlbumIndex(index);

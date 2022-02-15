@@ -17,13 +17,16 @@ $gray: #a2a2a2;
 
 .container {
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   margin-right: auto;
   margin-left: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  @include screen(md) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .title {
@@ -46,7 +49,7 @@ $gray: #a2a2a2;
   }
 
   svg {
-    font-family: 'gilroy', sans-serif;
+    font-family: "gilroy", sans-serif;
     font-size: 36px;
     width: 300px;
     height: 44px;

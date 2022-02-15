@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef } from 'react';
+import React, { UIEventHandler, useRef } from 'react';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import { Controls } from './Controls';
 import * as styles from './Player.module.scss';
@@ -12,6 +13,10 @@ export const Player = (): JSX.Element => {
   const player = useAudioPlayer(audioElement.current);
   const trackList = player.trackList.sort((a, b) => b.id - a.id);
 
+  const onScroll: UIEventHandler<HTMLElement> = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className={styles.player}>
       <Controls
@@ -21,7 +26,11 @@ export const Player = (): JSX.Element => {
         play={player.play}
         prev={player.prev}
       />
-      <div className={styles.scroll}>
+      <PerfectScrollbar
+        className={styles.scroll}
+        onScroll={onScroll}
+        options={{ wheelPropagation: false }}
+      >
         {trackList.map((val, idx) => (
           <div className={styles.album} key={idx}>
             <img src={val.art} />
@@ -39,7 +48,7 @@ export const Player = (): JSX.Element => {
             </div>
           </div>
         ))}
-      </div>
+      </PerfectScrollbar>
     </div>
   );
 };
