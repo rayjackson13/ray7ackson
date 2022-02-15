@@ -4,47 +4,48 @@
     "title": "Something Special",
     "date": "2017-09-23",
     "price": "7$",
+    "art": "https://i1.sndcdn.com/artworks-000443028564-bj85je-t500x500.jpg",
     "link": "https://rayjackson.bandcamp.com/album/something-special",
     "songs": [
       {
         "id": 0,
-        "idGlobal": 1,
+        "albumId": 0,
         "title": "In Your Eyes",
         "link": "/music/something-special/1.mp3"
       },
       {
         "id": 1,
-        "idGlobal": 2,
+        "albumId": 0,
         "title": "Something Special",
         "link": "/music/something-special/2.mp3"
       },
       {
         "id": 2,
-        "idGlobal": 3,
+        "albumId": 0,
         "title": "What Am I To Say",
         "link": "/music/something-special/3.mp3"
       },
       {
         "id": 3,
-        "idGlobal": 4,
+        "albumId": 0,
         "title": "Runnin\" Home To You",
         "link": "/music/something-special/4.mp3"
       },
       {
         "id": 4,
-        "idGlobal": 5,
+        "albumId": 0,
         "title": "Wicked Game",
         "link": "/music/something-special/5.mp3"
       },
       {
         "id": 5,
-        "idGlobal": 6,
+        "albumId": 0,
         "title": "Lost Without You",
         "link": "/music/something-special/6.mp3"
       },
       {
         "id": 6,
-        "idGlobal": 7,
+        "albumId": 0,
         "title": "Кладбище Самолётов",
         "link": "/music/something-special/7.mp3"
       }
@@ -55,11 +56,12 @@
     "title": "Home - Single",
     "date": "2017-10-23",
     "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-000189143028-djdfaa-t500x500.jpg",
     "link": "https://rayjackson.bandcamp.com/album/home-single",
     "songs": [
       {
         "id": 0,
-        "idGlobal": 8,
+        "albumId": 1,
         "title": "Home",
         "link": "/music/home-single/1.mp3"
       }

@@ -1,15 +1,13 @@
 @import '../../../styles/functions';
 
 .wrap {
-  padding: 15px 0 40px;
-  min-height: 300px;
-  flex: 1;
+  padding: 0 0 20px;
   display: flex;
   flex-direction: column;
 }
 
 .item {
-  padding: 5px 30px;
+  padding: 5px 0;
   display: block;
   cursor: pointer;
   font-size: 14px;
@@ -25,15 +23,15 @@
   }
 
   &[data-selected="true"] {
-    background-color: #1a1a1a;
-    color: #ffffff;
+    // background-color: #1a1a1a;
+    // color: #ffffff;
 
     .playButton {
-      color: #fff;
+      // color: #fff;
       opacity: 1;
 
       &:hover {
-        color: #fff;
+        // color: #fff;
       }
     }
   }

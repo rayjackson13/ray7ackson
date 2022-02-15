@@ -9,9 +9,11 @@ $gray: rgba(105, 105, 105, 0.3);
   border-radius: 16px;
   margin: 0 auto;
   backdrop-filter: blur(20px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   @include screen(md) {
-    height: 460px;
     max-width: 800px;
     border-radius: 24px;
   }
@@ -21,23 +23,38 @@ $gray: rgba(105, 105, 105, 0.3);
   }
 }
 
-.grid {
+.album {
   display: grid;
+  min-height: 140px;
   grid-template-columns: auto;
   grid-template-rows: repeat(2, auto);
-  height: 100%;
 
   @include screen(md) {
-    grid-template-columns: 33.333333% 66.666666%;
+    grid-template-columns: 120px 1fr;
     grid-template-rows: 1fr;
+    column-gap: 50px;
+    padding: 30px;
+
+    &:not(:last-child) {
+      padding-bottom: 0;
+    }
+  }
+
+  & img {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
   }
 }
 
-.rewind {
-  display: flex;
-  flex-direction: column;
+.title {
+  margin: 0;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
 
-  @include screen(md) {
-    border-left: 1px solid $gray;
-  }
+.scroll {
+  overflow-y: auto;
+  flex: 1;
 }

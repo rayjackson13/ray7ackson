@@ -3,6 +3,7 @@
 $gray: #a2a2a2;
 
 .music {
+  height: 100vh;
   padding: 50px 0;
   background-image: linear-gradient(to bottom, rgba(32, 32, 32, 0.15) 0%, rgba(0, 0, 0, 0.85) 100%),
     url(../../assets/img/player.jpg);
@@ -20,6 +21,9 @@ $gray: #a2a2a2;
   padding-right: 15px;
   margin-right: auto;
   margin-left: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -63,16 +67,15 @@ $gray: #a2a2a2;
 }
 
 .playerWrap {
-  flex: 0 0 100%;
   max-width: 100%;
   padding-left: 0;
   padding-right: 0;
+  max-height: calc(100% - 132px);
 }
 
 .player {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
   border-radius: 16px;
 
   @include screen(md) {

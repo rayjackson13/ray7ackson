@@ -5,12 +5,14 @@ import trackList from 'assets/music/trackList.json';
 import { getFileLink } from 'utils/firebase';
 
 export type Song = {
+  albumId: number;
   id: number;
   link: string;
   title: string;
 };
 
 export type Album = {
+  art: string;
   date: string;
   id: number;
   link: string;
@@ -25,14 +27,16 @@ export type AudioPlayer = {
   isLoading: boolean;
   isPlaying: boolean;
   next: () => void;
-  play: (index?: number | undefined) => Promise<void>;
+  play: (song?: Song) => Promise<void>;
   prev: () => void;
   trackIndex: number;
   trackList: Album[];
 };
 
 export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
-  const [albumIndex, setAlbumIndex] = useState(0);
+  const [albumIndex, setAlbumIndex] = useState(
+    trackList.sort((a, b) => b.id - a.id)[0].id
+  );
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setPlaying] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -42,6 +46,11 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     const albumId = index !== undefined ? index : albumIndex;
     return trackList.find((album) => album.id === albumId)?.songs || [];
   };
+
+  const getSelectedTrack = (): Song | undefined => {
+    const album = getSelectedAlbum();
+    return album.find(track => track.id === trackIndex);
+  }
 
   const changeAlbum = (index: number): void => {
     setAlbumIndex(index);
@@ -69,18 +78,21 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     setPlaying(false);
   };
 
-  const play = async (index?: number, albumId?: number): Promise<void> => {
-    const selectedIndex = index === undefined ? trackIndex : index;
-    if (isPlaying && selectedIndex === trackIndex) {
+  const play = async (song?: Song): Promise<void> => {
+    const track = song ? song : getSelectedTrack();
+    if (!track) return;
+
+    const isSelectedSong =
+      track.id === trackIndex && track.albumId === albumIndex;
+    if (isPlaying && isSelectedSong) {
       pause();
       return;
     }
 
     pause();
-    if (selectedIndex !== trackIndex || !isLoaded) {
-      setTrackIndex(selectedIndex);
-      const album = getSelectedAlbum(albumId);
-      const track = album.find((song) => song.id === selectedIndex);
+    if (!isSelectedSong || !isLoaded) {
+      setTrackIndex(track.id);
+      setAlbumIndex(track.albumId);
       setLoading(true);
       const loaded = await load(track);
       if (!loaded) {
@@ -105,16 +117,15 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
       (val) => val.id === trackIndex + 1
     );
     if (nextTrack) {
-      play(nextTrack.id);
+      play(nextTrack);
       return;
     }
 
-    const nextAlbum = trackList.find((val) => val.id === albumIndex + 1);
+    const nextAlbum = trackList.find((val) => val.id === albumIndex - 1);
     if (nextAlbum) {
-      setAlbumIndex(nextAlbum.id);
       const track = nextAlbum.songs[0];
-      setTrackIndex(track.id);
-      play(track.id, nextAlbum.id);
+      // setTrackIndex(track.id);
+      play(track);
     }
   };
 
@@ -123,17 +134,17 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
       (val) => val.id === trackIndex - 1
     );
     if (prevTrack) {
-      play(prevTrack.id);
+      play(prevTrack);
       return;
     }
 
-    const prevAlbum = trackList.find((val) => val.id === albumIndex - 1);
+    const prevAlbum = trackList.find((val) => val.id === albumIndex + 1);
     if (prevAlbum) {
       setAlbumIndex(prevAlbum.id);
       const songs = prevAlbum.songs;
       const track = songs[songs.length - 1];
       setTrackIndex(track.id);
-      play(track.id, prevAlbum.id);
+      play(track);
     }
   };
 

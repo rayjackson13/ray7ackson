@@ -3,36 +3,48 @@ import React from 'react';
 
 import * as styles from './TrackView.module.scss';
 
-import type { Song } from 'utils/useAudioPlayer';
+import type { AudioPlayer, Song } from 'utils/useAudioPlayer';
 
 type Props = {
+  albumIndex: number;
   isLoading: boolean;
   isPlaying: boolean;
-  play: (index?: number) => void;
-  selected: number;
+  play: AudioPlayer['play'];
+  selectedAlbum: number;
+  selectedTrack: number;
   trackList: Song[];
 };
 
 export const TrackView = (props: Props): JSX.Element => {
-  const { trackList, selected, play, isPlaying, isLoading } = props;
+  const {
+    albumIndex,
+    trackList,
+    selectedAlbum,
+    selectedTrack,
+    play,
+    isPlaying,
+    isLoading,
+  } = props;
   return (
     <div className={styles.wrap}>
       <div>
         {trackList.map((track, idx) => {
-          const icon = isPlaying && selected === track.id ? 'pause' : 'play';
+          const isSelected =
+            selectedAlbum === albumIndex && selectedTrack === track.id;
+          const icon = isPlaying && isSelected ? 'pause' : 'play';
           return (
             <span
               className={styles.item}
               data-index={track.id}
-              data-selected={selected === track.id}
+              data-selected={isSelected}
               key={track.id}
             >
               <button
                 className={styles.playButton}
-                onClick={(): void => play(track.id)}
+                onClick={(): Promise<void> => play(track)}
                 type="button"
               >
-                {isLoading && selected === track.id ? (
+                {isLoading && selectedTrack === track.id ? (
                   <FontAwesomeIcon
                     className={styles.loader}
                     icon={['fas', 'spinner']}
