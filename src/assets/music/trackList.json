@@ -66,5 +66,97 @@
         "link": "/music/home-single/1.mp3"
       }
     ]
+  },
+  {
+    "id": 2,
+    "title": "No Regrets - Single",
+    "date": "2020-06-08",
+    "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-19sqAubSRYtdCclF-lU0A6A-t500x500.jpg",
+    "link": "https://rayjackson.bandcamp.com/album/home-single",
+    "songs": [
+      {
+        "id": 0,
+        "albumId": 2,
+        "title": "Jesolo Beach",
+        "link": "/music/no-regrets/JesoloBeach (online-audio-converter.com).mp3"
+      },
+      {
+        "id": 1,
+        "albumId": 2,
+        "title": "The End of Me",
+        "link": "/music/no-regrets/TheEndofMe (online-audio-converter.com).mp3"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Fine - Single",
+    "date": "2020-06-08",
+    "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-7okz6mMHmuoVi8eY-p6LdbQ-t500x500.jpg",
+    "link": "https://rayjackson.bandcamp.com/album/home-single",
+    "songs": [
+      {
+        "id": 0,
+        "albumId": 3,
+        "title": "Fine (feat. Mislaidd)",
+        "link": "/music/fine/Fine (online-audio-converter.com).mp3"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Wish You'd Have Me Back - Single",
+    "date": "2020-06-08",
+    "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-M6zr7rKODQaBLf20-3K2GQw-t500x500.jpg",
+    "link": "https://rayjackson.bandcamp.com/album/home-single",
+    "songs": [
+      {
+        "id": 0,
+        "albumId": 4,
+        "title": "Wish You'd Have Me Back",
+        "link": "/music/wish-youd-have-me-back/Rev4 (online-audio-converter.com).mp3"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Closing Down - Single",
+    "date": "2020-06-08",
+    "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-XyHFZFvPlyy0kSNZ-VX4Ttw-t500x500.jpg",
+    "link": "https://rayjackson.bandcamp.com/album/home-single",
+    "songs": [
+      {
+        "id": 0,
+        "albumId": 5,
+        "title": "Closing Down",
+        "link": "/music/closing-down/ClosingDownFinal (online-audio-converter.com).mp3"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Pause & Repeat - Single",
+    "date": "2020-06-08",
+    "price": "1$",
+    "art": "https://i1.sndcdn.com/artworks-qG74gMsLxzEl0D7j-Kpd3kQ-t500x500.jpg",
+    "link": "https://rayjackson.bandcamp.com/album/home-single",
+    "songs": [
+      {
+        "id": 0,
+        "albumId": 6,
+        "title": "Pause & Repeat",
+        "link": "/music/pause-repeat/PauseRepeatFinal (online-audio-converter.com).mp3"
+      },
+      {
+        "id": 1,
+        "albumId": 6,
+        "title": "Pause & Repeat (Slowed & Reverb Mix)",
+        "link": "/music/pause-repeat/RepeatSlowedandReverb (online-audio-converter.com).mp3"
+      }
+    ]
   }
 ]

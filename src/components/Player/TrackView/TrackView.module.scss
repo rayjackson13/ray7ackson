@@ -10,7 +10,6 @@
   padding: 5px 0;
   display: block;
   cursor: pointer;
-  font-size: 14px;
   transition: background-color 0.125s, color 0.125s;
   color: #1a1a1a;
   display: flex;
@@ -63,7 +62,8 @@
 }
 
 .name {
-  font-size: 14px;
+  font-size: 16px;
+  letter-spacing: 0.01rem;
   margin-left: 6px;
   transform: translateX(-30px);
   transition: all 0.125s;

@@ -1,3 +1,4 @@
+@import "../../../styles/functions";
 $gray: #a2a2a2;
 
 .controls {
@@ -6,6 +7,11 @@ $gray: #a2a2a2;
   margin-right: 30px;
   border-bottom: 2px solid $gray;
   display: flex;
+
+  @include screen(xl) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 .controlsWrap {
