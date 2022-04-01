@@ -115,6 +115,12 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     }
   };
 
+  const resetTracks = (): void => {
+    setAlbumIndex(trackList[0].id);
+    setTrackIndex(0);
+    setLoaded(false);
+  };
+
   const next = (): void => {
     const nextTrack = getSelectedAlbum().find(
       (val) => val.id === trackIndex + 1
@@ -127,9 +133,13 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     const nextAlbum = trackList.find((val) => val.id === albumIndex - 1);
     if (nextAlbum) {
       const track = nextAlbum.songs[0];
-      // setTrackIndex(track.id);
       play(track);
+      return;
     }
+
+    // No next track available.
+    pause();
+    resetTracks();
   };
 
   const prev = (): void => {
@@ -143,12 +153,14 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
 
     const prevAlbum = trackList.find((val) => val.id === albumIndex + 1);
     if (prevAlbum) {
-      setAlbumIndex(prevAlbum.id);
-      const songs = prevAlbum.songs;
-      const track = songs[songs.length - 1];
-      setTrackIndex(track.id);
+      const track = prevAlbum.songs[prevAlbum.songs.length - 1];
       play(track);
+      return;
     }
+
+    // No previous track available.
+    pause();
+    resetTracks();
   };
 
   const setVolume = (nextVolume: number): void => {
@@ -156,6 +168,8 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     audioElement.volume = nextVolume / 100;
     updateVolume(nextVolume);
   };
+
+  audioElement.onended = (): void => next();
 
   useEffect(() => {
     audioElement.preload = 'none';
