@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import * as styles from './Hero.module.scss';
 
-import BackgroundImage from 'assets/img/bg-new.jpeg';
+import BackgroundImage from 'assets/img/hero-spring.jpg';
 import { Snow } from 'components/Snow';
 import { Socials } from 'components/Socials';
 
@@ -29,11 +29,11 @@ export const Hero = (): JSX.Element => {
         <span className={styles.attribution}>
           Photo by
           <a
-            href="https://unsplash.com/photos/_TuI8tZHlk4"
+            href="https://unsplash.com/photos/YQwVE8cpi4g"
             rel="noreferrer"
             target="_blank"
           >
-            Josh Hild
+            Lennart Hellwig
           </a>
           on
           <a href="https://unsplash.com" rel="noreferrer" target="_blank">
