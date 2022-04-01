@@ -29,8 +29,10 @@ export type AudioPlayer = {
   next: () => void;
   play: (song?: Song) => Promise<void>;
   prev: () => void;
+  setVolume: (volume: number) => void;
   trackIndex: number;
   trackList: Album[];
+  volume: number;
 };
 
 export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
@@ -41,6 +43,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   const [isPlaying, setPlaying] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isLoaded, setLoaded] = useState(false);
+  const [volume, updateVolume] = useState(60);
 
   const getSelectedAlbum = (index?: number): Song[] => {
     const albumId = index !== undefined ? index : albumIndex;
@@ -148,6 +151,12 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     }
   };
 
+  const setVolume = (nextVolume: number): void => {
+    if (nextVolume < 0 || nextVolume > 100) return;
+    audioElement.volume = nextVolume / 100;
+    updateVolume(nextVolume);
+  };
+
   useEffect(() => {
     audioElement.preload = 'none';
     const track = getSelectedAlbum().find((song) => song.id === trackIndex);
@@ -165,5 +174,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     prev,
     trackIndex,
     trackList,
+    setVolume,
+    volume,
   };
 };

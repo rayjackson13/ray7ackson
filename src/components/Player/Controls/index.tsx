@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React from 'react';
+import { Range } from 'react-range';
+import { IRenderThumbParams, IRenderTrackParams } from 'react-range/lib/types';
 
 import * as styles from './Controls.module.scss';
 
@@ -12,11 +14,25 @@ type Props = {
   next: AudioPlayer['next'];
   play: AudioPlayer['play'];
   prev: AudioPlayer['prev'];
+  setVolume: AudioPlayer['setVolume'];
+  volume: AudioPlayer['volume'];
 };
 
+const RangeThumb = ({ props }: IRenderThumbParams): JSX.Element => (
+  <div {...props} className={styles.volumeThumb} />
+);
+
+const RangeTrack = ({ props, children }: IRenderTrackParams): JSX.Element => (
+  <div {...props} className={styles.volumeTrack}>
+    {children}
+  </div>
+);
+
 export const Controls = (props: Props): JSX.Element => {
-  const { isLoading, isPlaying, next, play, prev } = props;
+  const { isLoading, isPlaying, next, play, prev, setVolume, volume } = props;
   const icon = isPlaying ? 'pause' : 'play';
+
+  const onVolumeChange = (values: number[]): void => setVolume(values[0]);
 
   return (
     <div className={styles.controls}>
@@ -50,11 +66,18 @@ export const Controls = (props: Props): JSX.Element => {
           <i className="fas fa-step-forward" />
         </button>
       </span>
-      <span className={styles.buy}>
-        <a className={styles.buyLink} href="temp" id="audioBuy" target="_blank">
-          <span>Stream</span>
-          <i className="fas fa-headphones" />
-        </a>
+
+      <span className={`${styles.controlsWrap} ${styles.volume}`}>
+        <i className={`fas fa-volume-down ${styles.volumeIcon}`} />
+        <Range
+          max={100}
+          min={0}
+          onChange={onVolumeChange}
+          renderThumb={RangeThumb}
+          renderTrack={RangeTrack}
+          step={5}
+          values={[volume]}
+        />
       </span>
     </div>
   );

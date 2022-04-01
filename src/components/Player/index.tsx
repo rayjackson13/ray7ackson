@@ -25,7 +25,10 @@ export const Player = (): JSX.Element => {
         next={player.next}
         play={player.play}
         prev={player.prev}
+        setVolume={player.setVolume}
+        volume={player.volume}
       />
+
       <PerfectScrollbar
         className={styles.scroll}
         onScroll={onScroll}
