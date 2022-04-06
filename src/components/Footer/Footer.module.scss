@@ -1,0 +1,73 @@
+@import '../../styles/functions';
+
+.navbar {
+  background-color: #c1bfbd;
+  padding: 1.5em 1em;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include screen(md) {
+    padding: 0 100px;
+  }
+}
+
+.brand {
+  font-family: acme;
+  color: #253521;
+  font-size: 22px;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.5em;
+
+  @include screen(md) {
+    width: auto;
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+
+.accent {
+  color: #9B1919;
+}
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.socials {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media (min-width: 768px) {
+    width: auto;
+  }
+
+  & > :global(ul) {
+    background-color: transparent;
+  }
+}
+
+.copy {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 14px;
+  color: #2e2e2e;
+  width: 100%;
+  text-align: center;
+
+  @include screen (xl) {
+    position: absolute;
+    margin-bottom: 0;
+  }
+}
