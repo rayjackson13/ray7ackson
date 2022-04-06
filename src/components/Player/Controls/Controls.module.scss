@@ -165,3 +165,18 @@ $gray: #a2a2a2;
   border-radius: 2px;
   background-color: #2e2e2e;
 }
+
+.songControls {
+  display: flex;
+  align-items: center;
+}
+
+.songName {
+  display: none;
+  margin-left: 2rem;
+  color: #2e2e2e;
+
+  @include screen(md) {
+    display: block;
+  }
+}

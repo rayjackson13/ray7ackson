@@ -22,12 +22,7 @@ $screen-sm: 'screen and (max-width: 991px)';
     font-weight: normal;
     src: local('Gilroy Light'), url('../assets/fonts/Gilroy-Light.otf') format('opentype');
 }
-@font-face {
-    font-family: 'lobster';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Lobster-Regular'), url('../assets/fonts/Lobster-Regular.ttf') format('truetype');
-}
+
 
 body{
 	margin: 0;

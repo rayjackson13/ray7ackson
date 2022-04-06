@@ -20,6 +20,7 @@ export const Player = (): JSX.Element => {
   return (
     <div className={styles.player}>
       <Controls
+        currentSong={player.currentSong}
         isLoading={player.isLoading}
         isPlaying={player.isPlaying}
         next={player.next}

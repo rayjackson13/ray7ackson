@@ -23,6 +23,7 @@ export type Album = {
 export type AudioPlayer = {
   albumIndex: number;
   changeAlbum: (index: number) => void;
+  currentSong?: Song;
   getSelectedAlbum: () => Song[];
   isLoading: boolean;
   isPlaying: boolean;
@@ -169,6 +170,8 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
     updateVolume(nextVolume);
   };
 
+  const currentSong = getSelectedAlbum().find((song) => song.id === trackIndex);
+
   audioElement.onended = (): void => next();
 
   useEffect(() => {
@@ -180,6 +183,7 @@ export const useAudioPlayer = (audioElement: HTMLAudioElement): AudioPlayer => {
   return {
     albumIndex,
     changeAlbum,
+    currentSong,
     getSelectedAlbum,
     isLoading,
     isPlaying,
